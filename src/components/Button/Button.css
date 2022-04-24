@@ -1,0 +1,31 @@
+.Button__root {
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 6rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.Button--contained {
+  background-color: var(--color-red);
+  color: var(--color-text-white);
+  padding: 0.4rem 1rem;
+}
+
+.Button--outlined {
+  border: 1.75px solid var(--color-gray);
+  box-sizing: content-box;
+  background-color: transparent;
+}
+
+.Button__text--capitalize {
+  text-transform: uppercase;
+}
+.Button--disabled {
+  background-color: var(--color-primary-disabled);
+  cursor: initial;
+}

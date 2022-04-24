@@ -1,0 +1,111 @@
+.Text {
+  color: inherit;
+}
+
+.Text--200 {
+  font-weight: 200;
+}
+
+.Text--300 {
+  font-weight: 300;
+}
+.Text--400 {
+  font-weight: 400;
+}
+.Text--500 {
+  font-weight: 500;
+}
+.Text--600 {
+  font-weight: 600;
+}
+.Text--700 {
+  font-weight: 700;
+}
+
+.Text--bold {
+  font-weight: bold;
+}
+.Text--uppercase {
+  text-transform: uppercase;
+}
+
+.Text--error {
+  color: var(--color-red);
+  border: 1px solid var(--color-red);
+  border-radius: 4px;
+  padding: 4px 0;
+}
+
+.Text--red {
+  color: var(--color-red);
+}
+.Text--xs {
+  font-size: 0.9rem;
+}
+.Text--sm {
+  font-size: 1.1rem;
+}
+.Text--ssm {
+  font-size: 1.25rem;
+}
+
+.Text--md {
+  font-size: 1.5rem;
+}
+.Text--mmd {
+  font-size: 1.75rem;
+}
+.Text--xl {
+  font-size: 2rem;
+}
+
+.Text--xxl {
+  font-size: 2.25rem;
+}
+.Text--xxxl {
+  font-size: 2.55rem;
+}
+.Text--xxlg {
+  font-size: 2.85rem;
+}
+.Text--primary {
+  color: var(--color-primary);
+}
+.Text--end {
+  text-align: end;
+}
+.Text--center {
+  text-align: center;
+}
+.Text--start {
+  text-align: start;
+}
+
+@media screen and (max-width: 422px) {
+  .Text--sm {
+    font-size: 1rem;
+  }
+  .Text--ssm {
+    font-size: 1.15rem;
+  }
+
+  .Text--md {
+    font-size: 1.35rem;
+  }
+  .Text--mmd {
+    font-size: 1.4rem;
+  }
+  .Text--xl {
+    font-size: 1.65rem;
+  }
+
+  .Text--xxl {
+    font-size: 1.9rem;
+  }
+  .Text--xxxl {
+    font-size: 2rem;
+  }
+  .Text--xxlg {
+    font-size: 2.3rem;
+  }
+}
