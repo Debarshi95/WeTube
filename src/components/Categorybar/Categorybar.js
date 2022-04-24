@@ -15,12 +15,7 @@ const Categorybar = () => {
           const pathname = toCamelCase(category.name);
           return (
             <div key={category.id} className="Categorybar__link">
-              <Button
-                component="navLink"
-                className="radius-inherit"
-                to={`category/${pathname}`}
-                activeClassName="link-active"
-              >
+              <Button component="navLink" className="radius-inherit" to={`category/${pathname}`}>
                 {category.name}
               </Button>
             </div>

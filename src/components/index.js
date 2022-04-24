@@ -6,3 +6,5 @@ export { default as Image } from './Image/Image';
 export { default as Button } from './Button/Button';
 export { default as ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
 export { default as NotFound } from './NotFound/NotFound';
+export { default as Categorybar } from './Categorybar/Categorybar';
+export { default as Loader } from './Loader/Loader';

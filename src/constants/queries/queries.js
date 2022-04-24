@@ -13,12 +13,34 @@ const FETCH_VIDEOS = gql`
       uploadedBy {
         username
       }
-      categoryId {
-        id
-        name
+    }
+  }
+`;
+
+const FETCH_CATEGORY = gql`
+  query getCategories {
+    categories: getAllCategories {
+      id
+      name
+    }
+  }
+`;
+
+const FETCH_VIDEO_BY_CATEGORY = gql`
+  query getVideosByCategory($categoryName: String!) {
+    videos: getVideoByCategory(categoryName: $categoryName) {
+      id
+      title
+      description
+      likes
+      viewCount
+      url
+      imageUrl
+      uploadedBy {
+        username
       }
     }
   }
 `;
 
-export { FETCH_VIDEOS };
+export { FETCH_VIDEOS, FETCH_CATEGORY, FETCH_VIDEO_BY_CATEGORY };
