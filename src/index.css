@@ -22,3 +22,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.radius-inherit {
+  border-radius: inherit;
+}
+
+.link-active {
+  background-color: var(--color-red-hover);
+}
