@@ -1,4 +1,4 @@
-import { Loader, Navbar } from 'components';
+import { Loader, Navbar, NotFound } from 'components';
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -39,6 +39,7 @@ const App = () => {
             }
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

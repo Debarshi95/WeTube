@@ -2,17 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from 'pages/App';
 import { ApolloProvider, SideDrawerProvider } from 'providers';
+import { ErrorBoundary } from 'components';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ApolloProvider>
-      <SideDrawerProvider>
-        <App />
-      </SideDrawerProvider>
-    </ApolloProvider>
+    <ErrorBoundary>
+      <ApolloProvider>
+        <SideDrawerProvider>
+          <App />
+        </SideDrawerProvider>
+      </ApolloProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 

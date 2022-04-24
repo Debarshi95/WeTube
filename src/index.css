@@ -30,3 +30,6 @@ a {
 .link-active {
   background-color: var(--color-red-hover);
 }
+.h-80 {
+  height: 80vh;
+}
