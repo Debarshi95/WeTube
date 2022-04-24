@@ -1,0 +1,32 @@
+.Card__root {
+  background-color: green;
+  height: 19rem;
+  background-color: var(--color-dark-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.Card__root::before {
+  background-color: var(--color-dark-secondary);
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.1;
+}
+
+.Card__content {
+  max-width: 90%;
+  margin: 0.5rem auto;
+  font-family: inherit;
+}
+.Card__content > p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.Card_icon {
+  margin-right: 4px;
+  font-size: 1.4rem;
+}

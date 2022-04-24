@@ -1,0 +1,33 @@
+.SideDrawer__root {
+  background-color: var(--color-dark-secondary);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 240px;
+  left: 0;
+  z-index: 2;
+  padding: 1rem;
+}
+
+.SideDrawer__links {
+  padding: 0.2rem 1rem;
+  display: block;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  border: 1.5px solid var(--color-red);
+}
+
+.SideDrawer__links:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-red);
+}
+
+.slide-in {
+  display: block;
+  transform: translateX(0);
+  transition: transform 0.5s;
+}
+.slide-out {
+  transform: translateX(-110%);
+  transition: transform 0.5s;
+}
