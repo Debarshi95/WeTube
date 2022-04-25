@@ -1,0 +1,40 @@
+.Video__root {
+  max-width: 90%;
+  margin: 2rem auto;
+}
+.Video__container {
+  height: 84vh;
+  background-color: var(--color-dark-secondary);
+  margin-right: 2rem;
+  position: sticky;
+  top: 5.5rem;
+  width: 70%;
+}
+
+.Video__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.Video__watchContainer {
+}
+@media screen and (max-width: 1068px) {
+  .Video__root {
+    margin: 0;
+    padding: 0 1.5rem;
+    max-width: 100%;
+  }
+  .Video__wrapper {
+    display: block;
+  }
+  .Video__watchContainer {
+    margin-top: 2rem;
+  }
+
+  .Video__container {
+    width: 100%;
+    height: 72vh;
+    margin: 0;
+    position: relative;
+    top: 0;
+  }
+}

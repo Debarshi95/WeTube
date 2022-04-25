@@ -43,4 +43,25 @@ const FETCH_VIDEO_BY_CATEGORY = gql`
   }
 `;
 
-export { FETCH_VIDEOS, FETCH_CATEGORY, FETCH_VIDEO_BY_CATEGORY };
+const FETCH_VIDEO_BY_ID = gql`
+  query getVideoById($videoId: Int) {
+    video: getVideoById(videoId: $videoId) {
+      id
+      title
+      description
+      viewCount
+      likes
+      url
+      imageUrl
+      categoryId {
+        name
+        id
+      }
+      uploadedBy {
+        username
+      }
+    }
+  }
+`;
+
+export { FETCH_VIDEOS, FETCH_CATEGORY, FETCH_VIDEO_BY_CATEGORY, FETCH_VIDEO_BY_ID };
