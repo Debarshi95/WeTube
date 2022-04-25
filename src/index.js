@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from 'pages/App';
+import { ApolloProvider, SideDrawerProvider } from 'providers';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider>
+      <SideDrawerProvider>
+        <App />
+      </SideDrawerProvider>
+    </ApolloProvider>
   </React.StrictMode>
 );
 

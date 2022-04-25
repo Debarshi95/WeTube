@@ -1,0 +1,28 @@
+.Navbar__root {
+  width: '100%';
+}
+.Navbar__root > nav {
+  width: 90%;
+  margin: 1rem auto;
+}
+.Navbar__root a {
+  padding: 0.4rem 1rem;
+  min-width: 4rem;
+}
+.Navbar__root a:hover {
+  color: var(--color-red);
+}
+.ham--icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .Navbar--main {
+    display: none;
+  }
+  .Navbar__root a {
+    padding: 0.4rem 0.5rem;
+    min-width: 4rem;
+  }
+}
