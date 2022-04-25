@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 const LazyIndex = React.lazy(() => import('./IndexPage/IndexPage'));
 const LazyHome = React.lazy(() => import('./Home/Home'));
 const LazyCategory = React.lazy(() => import('./Category/Category'));
+const LazyVideo = React.lazy(() => import('./Video/Video'));
 
 const App = () => {
   return (
@@ -39,6 +40,15 @@ const App = () => {
             }
           />
         </Route>
+        <Route
+          path="/video/:name"
+          index
+          element={
+            <Suspense fallback={<Loader />}>
+              <LazyVideo />
+            </Suspense>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

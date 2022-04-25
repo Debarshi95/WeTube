@@ -5,7 +5,16 @@ const SideDrawerContext = createContext();
 const SideDrawerProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
 
-  const value = useMemo(() => ({ open, toggle: () => setOpen((prev) => !prev) }), [open]);
+  const value = useMemo(
+    () => ({
+      open,
+      toggle: (e) => {
+        e.preventDefault();
+        setOpen((prev) => !prev);
+      },
+    }),
+    [open]
+  );
   return <SideDrawerContext.Provider value={value}>{children}</SideDrawerContext.Provider>;
 };
 

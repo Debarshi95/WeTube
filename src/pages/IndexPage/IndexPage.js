@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <section className="Index__root">
       <SideDrawer />
-
       <Categorybar />
       <Outlet />
     </section>
