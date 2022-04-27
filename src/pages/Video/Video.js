@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client';
 import { AiOutlineLike } from 'react-icons/ai';
 import { RiPlayListAddFill } from 'react-icons/ri';
-import { Loader, SideDrawer, Text, Watchmore } from 'components';
+import { Loader, SideDrawer, Text, Card } from 'components';
 import CardPlayer from 'components/CardPlayer/CardPlayer';
-import { FETCH_VIDEO_BY_ID } from 'constants/queries/queries';
+import { FETCH_VIDEO_BY_ID, FETCH_VIDEOS } from 'constants/queries/queries';
 import { useLocation } from 'react-router-dom';
 import './Video.css';
 
@@ -17,6 +17,8 @@ const Video = () => {
       videoId: Number(id),
     },
   });
+
+  const { data: videoData } = useQuery(FETCH_VIDEOS);
 
   return (
     <section className="Video__root">
@@ -47,7 +49,12 @@ const Video = () => {
           <Text size="md" className="text-bold mb-1">
             Watch More
           </Text>
-          <Watchmore />
+          <div>
+            {videoData?.videos &&
+              videoData.videos
+                .slice(4, 12)
+                .map((video) => <Card className="Card__width" key={video.id} item={video} />)}
+          </div>
         </div>
       </article>
     </section>
