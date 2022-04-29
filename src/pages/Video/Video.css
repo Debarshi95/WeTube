@@ -3,27 +3,20 @@
   margin: 2rem auto;
 }
 .Video__container {
-  height: 84vh;
+  height: fit-content;
   background-color: var(--color-dark-secondary);
   margin-right: 2rem;
   position: sticky;
   top: 5.5rem;
-  width: 70%;
+  width: 64%;
 }
 
 .Video__wrapper {
   display: flex;
   justify-content: space-between;
 }
-.Card__width {
-  width: 20rem;
-}
-
-@media screen and (max-width: 1068px) {
-  .Card__width {
-    width: 100%;
-    height: 20rem;
-  }
+.Video__card {
+  width: 24rem;
 }
 
 @media screen and (max-width: 1068px) {
@@ -31,6 +24,7 @@
     margin: 0;
     padding: 0 1.5rem;
     max-width: 100%;
+    height: fit-content;
   }
   .Video__wrapper {
     display: block;
@@ -41,9 +35,11 @@
 
   .Video__container {
     width: 100%;
-    height: 72vh;
     margin: 0;
     position: relative;
     top: 0;
+  }
+  .Video__card {
+    width: 100%;
   }
 }

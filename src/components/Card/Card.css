@@ -1,5 +1,4 @@
 .Card__root {
-  height: 19rem;
   background-color: var(--color-dark-secondary);
   border-radius: 8px;
   overflow: hidden;
