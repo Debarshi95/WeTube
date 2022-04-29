@@ -6,11 +6,12 @@ const FETCH_VIDEOS = gql`
       id
       title
       description
-      likes
-      viewCount
       url
-      imageUrl
-      uploadedBy {
+      thumbnail
+      categories {
+        name
+      }
+      user {
         username
       }
     }
@@ -32,11 +33,9 @@ const FETCH_VIDEO_BY_CATEGORY = gql`
       id
       title
       description
-      likes
-      viewCount
       url
-      imageUrl
-      uploadedBy {
+      thumbnail
+      user {
         username
       }
     }
@@ -44,20 +43,17 @@ const FETCH_VIDEO_BY_CATEGORY = gql`
 `;
 
 const FETCH_VIDEO_BY_ID = gql`
-  query getVideoById($videoId: Int) {
+  query getVideoById($videoId: String!) {
     video: getVideoById(videoId: $videoId) {
       id
       title
       description
-      viewCount
-      likes
       url
-      imageUrl
-      categoryId {
+      thumbnail
+      categories {
         name
-        id
       }
-      uploadedBy {
+      user {
         username
       }
     }
