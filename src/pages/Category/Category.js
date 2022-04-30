@@ -1,3 +1,4 @@
+import { upperFirst } from 'lodash';
 import { useQuery } from '@apollo/client';
 import { Card, Loader } from 'components';
 import { FETCH_VIDEO_BY_CATEGORY } from 'constants/queries/queries';
@@ -10,7 +11,7 @@ const Category = () => {
 
   const { data, loading } = useQuery(FETCH_VIDEO_BY_CATEGORY, {
     variables: {
-      categoryName,
+      categoryName: upperFirst(categoryName),
     },
   });
 
