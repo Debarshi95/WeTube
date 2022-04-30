@@ -1,24 +1,24 @@
 import { useQuery } from '@apollo/client';
+import { useMediaQuery } from 'react-responsive';
 import { AiOutlineLike } from 'react-icons/ai';
 import { RiPlayListAddFill } from 'react-icons/ri';
-import { Loader, SideDrawer, Text, Card } from 'components';
-import CardPlayer from 'components/CardPlayer/CardPlayer';
+import { Loader, SideDrawer, Text, Card, CardPlayer } from 'components';
 import { FETCH_VIDEO_BY_ID, FETCH_VIDEOS } from 'constants/queries/queries';
 import { useLocation } from 'react-router-dom';
 import './Video.css';
 
 const Video = () => {
-  const {
-    state: { id = null },
-  } = useLocation();
+  const { state } = useLocation();
 
   const { data, loading } = useQuery(FETCH_VIDEO_BY_ID, {
     variables: {
-      videoId: Number(id),
+      videoId: state?.id,
     },
   });
 
   const { data: videoData } = useQuery(FETCH_VIDEOS);
+
+  const lg = useMediaQuery({ maxWidth: 1068 });
 
   return (
     <section className="Video__root">
@@ -39,7 +39,7 @@ const Video = () => {
                 </div>
               </div>
 
-              <Text size="sm" align="start" className="max-w-50 h-full Text--ellipsis">
+              <Text size="sm" align="start" className="max-w-50 pb-2 h-full Text--ellipsis">
                 {data.video.description}
               </Text>
             </div>
@@ -49,12 +49,19 @@ const Video = () => {
           <Text size="md" className="text-bold mb-1">
             Watch More
           </Text>
-          <div>
-            {videoData?.videos &&
-              videoData.videos
-                .slice(4, 12)
-                .map((video) => <Card className="Card__width" key={video.id} item={video} />)}
-          </div>
+
+          {videoData?.videos &&
+            videoData.videos.slice(5, 12).map((video) => (
+              <Card
+                className="Video__card"
+                key={video.id}
+                item={video}
+                imgProps={{
+                  width: '100%',
+                  height: lg ? '20rem' : '13rem',
+                }}
+              />
+            ))}
         </div>
       </article>
     </section>
