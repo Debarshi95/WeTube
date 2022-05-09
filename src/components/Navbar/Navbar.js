@@ -1,12 +1,22 @@
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useAuthContext, useSideDrawerContext } from 'providers';
 import { Button } from 'components';
+import { LOGOUT_USER } from 'constants/queries/queries';
+import { deleteLocalStorageData } from 'utils/helperFuncs';
 import './Navbar.css';
 
 const Navbar = () => {
-  const { user = null } = useAuthContext();
+  const { user = null, setUser } = useAuthContext();
   const { toggle } = useSideDrawerContext();
+
+  const [logout] = useMutation(LOGOUT_USER, {
+    onCompleted: () => {
+      deleteLocalStorageData('token');
+      setUser(null);
+    },
+  });
 
   return (
     <div className="Navbar__root">
@@ -20,7 +30,7 @@ const Navbar = () => {
           </Link>
         </div>
         {user ? (
-          <Button size="md" variant="contained" className="text-bold">
+          <Button size="md" variant="contained" className="text-bold" onClick={logout}>
             Logout
           </Button>
         ) : (
