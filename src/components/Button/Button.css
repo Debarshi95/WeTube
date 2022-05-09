@@ -13,7 +13,7 @@
 .Button--contained {
   background-color: var(--color-red);
   color: var(--color-text-white);
-  padding: 0.4rem 1rem;
+  padding: 0.8rem 1rem;
 }
 
 .Button--outlined {
@@ -25,7 +25,9 @@
 .Button__text--capitalize {
   text-transform: uppercase;
 }
+
 .Button--disabled {
-  background-color: var(--color-primary-disabled);
+  background-color: var(--color-red-disabled);
+  pointer-events: none;
   cursor: initial;
 }
