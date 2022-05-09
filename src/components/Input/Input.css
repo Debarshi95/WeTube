@@ -1,0 +1,24 @@
+.Input__root {
+  padding: 0.9rem 1rem;
+  outline: none;
+  width: 100%;
+  margin: 0.65rem 0;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-input-bg);
+  font-size: 0.95rem;
+}
+
+.Input__error {
+  color: var(--color-red);
+  margin: 0 0 4px 4px;
+  font-size: 1rem;
+}
+.Input__label {
+  font-size: 0.87rem;
+  font-family: inherit;
+}
+
+::placeholder {
+  font-size: 1rem;
+}
