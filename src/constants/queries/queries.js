@@ -60,4 +60,64 @@ const FETCH_VIDEO_BY_ID = gql`
   }
 `;
 
-export { FETCH_VIDEOS, FETCH_CATEGORY, FETCH_VIDEO_BY_CATEGORY, FETCH_VIDEO_BY_ID };
+const REGISTER_USER_MUTATION = gql`
+  mutation registerUser(
+    $email: String!
+    $username: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    registerUser(
+      email: $email
+      username: $username
+      password: $password
+      confirmPassword: $confirmPassword
+    ) {
+      id
+      username
+      token
+      email
+    }
+  }
+`;
+
+const FETCH_USER_DATA = gql`
+  query fetchUserData($token: String!) {
+    user: getUser(token: $token) {
+      id
+      username
+      token
+      email
+    }
+  }
+`;
+const LOGOUT_USER = gql`
+  mutation logoutUser {
+    logoutUser {
+      success
+      message
+    }
+  }
+`;
+
+const LOGIN_USER = gql`
+  mutation loginUser($email: String!, $password: String!) {
+    loginUser(email: $email, password: $password) {
+      id
+      token
+      email
+      username
+    }
+  }
+`;
+
+export {
+  LOGIN_USER,
+  FETCH_VIDEOS,
+  FETCH_CATEGORY,
+  FETCH_VIDEO_BY_CATEGORY,
+  FETCH_VIDEO_BY_ID,
+  REGISTER_USER_MUTATION,
+  FETCH_USER_DATA,
+  LOGOUT_USER,
+};
