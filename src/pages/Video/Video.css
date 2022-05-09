@@ -2,19 +2,25 @@
   max-width: 90%;
   margin: 2rem auto;
 }
+
 .Video__container {
   height: fit-content;
   background-color: var(--color-dark-secondary);
-  margin-right: 2rem;
   position: sticky;
   top: 5.5rem;
-  width: 64%;
+  width: 100%;
 }
 
 .Video__wrapper {
   display: flex;
   justify-content: space-between;
 }
+
+.Video__mainCard {
+  flex: 1;
+  margin-right: 2rem;
+}
+
 .Video__card {
   width: 24rem;
 }
@@ -26,9 +32,11 @@
     max-width: 100%;
     height: fit-content;
   }
+
   .Video__wrapper {
     display: block;
   }
+
   .Video__watchContainer {
     margin-top: 2rem;
   }
@@ -39,7 +47,12 @@
     position: relative;
     top: 0;
   }
+
   .Video__card {
     width: 100%;
+  }
+
+  .Video__mainCard {
+    margin: 0;
   }
 }

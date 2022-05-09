@@ -11,7 +11,7 @@
 .Categorybar__link > a {
   padding: 0.5rem 1rem;
   min-width: 8rem;
-  margin: 0.75rem 0.5rem;
+  margin: 14px 8px;
 }
 .Categorybar__link > a:hover {
   background-color: var(--color-red-hover);
@@ -19,8 +19,8 @@
 
 @media screen and (max-width: 422px) {
   .Categorybar__link > a {
-    padding: 0.2rem 0.7rem;
+    padding: 4px 12px;
     min-width: 8rem;
-    margin: 0.75rem 0.5rem;
+    margin: 14px 8px;
   }
 }

@@ -1,7 +1,6 @@
 .CardPlayer__root {
   width: 100%;
   height: 64vh;
-  min-width: 50vw;
 }
 
 @media screen and (max-width: 600px) {

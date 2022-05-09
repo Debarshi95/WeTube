@@ -1,9 +1,8 @@
 import { upperFirst } from 'lodash';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Card, Loader } from 'components';
 import { FETCH_VIDEO_BY_CATEGORY } from 'constants/queries/queries';
-import React from 'react';
-import { useLocation } from 'react-router-dom';
 
 const Category = () => {
   const { pathname } = useLocation();
