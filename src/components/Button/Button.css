@@ -13,7 +13,7 @@
 .Button--contained {
   background-color: var(--color-red);
   color: var(--color-text-white);
-  padding: 0.8rem 1rem;
+  padding: 8px 1rem;
 }
 
 .Button--outlined {
@@ -30,4 +30,9 @@
   background-color: var(--color-red-disabled);
   pointer-events: none;
   cursor: initial;
+}
+
+.Button__root:hover {
+  color: var(--color-red);
+  background-color: var(--color-white);
 }

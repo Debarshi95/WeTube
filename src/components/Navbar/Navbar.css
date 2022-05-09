@@ -7,14 +7,14 @@
 }
 .Navbar__root > nav {
   width: 90%;
-  margin: 1rem auto;
+  margin: 8px auto;
 }
 .Navbar__root a {
   padding: 0.4rem 1rem;
   min-width: 4rem;
 }
 .Navbar__root a:hover {
-  color: var(--color-red);
+  color: var(--color-red-disabled);
 }
 .ham--icon {
   font-size: 1.5rem;
@@ -24,14 +24,14 @@
 @media screen and (max-width: 600px) {
   .Navbar__root {
     width: 100%;
-    padding: 0.1rem;
+    padding: 1.5px;
     background-color: var(--color-red);
   }
   .Navbar--main {
     display: none;
   }
   .Navbar__root a {
-    padding: 0.4rem 0.5rem;
+    padding: 6px 8px;
     min-width: 4rem;
   }
   .Navbar__root a:hover {
