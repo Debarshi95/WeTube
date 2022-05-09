@@ -8,7 +8,6 @@
 }
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Poppins', sans-serif;
   color: var(--color-text-primary);
   background-color: var(--color-dark);
@@ -21,4 +20,15 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.radius-inherit {
+  border-radius: inherit;
+}
+
+.link-active {
+  background-color: var(--color-red-hover);
+}
+.h-80 {
+  height: 80vh;
 }

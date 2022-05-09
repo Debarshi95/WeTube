@@ -1,0 +1,10 @@
+.Loader__root {
+  width: 100%;
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Loader__icon {
+  color: var(--color-red-hover);
+}

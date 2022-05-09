@@ -1,8 +1,11 @@
-import { Navbar } from 'components';
+import { Loader, Navbar, NotFound } from 'components';
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+const LazyIndex = React.lazy(() => import('./IndexPage/IndexPage'));
 const LazyHome = React.lazy(() => import('./Home/Home'));
+const LazyCategory = React.lazy(() => import('./Category/Category'));
+const LazyVideo = React.lazy(() => import('./Video/Video'));
 
 const App = () => {
   return (
@@ -11,13 +14,42 @@ const App = () => {
       <Routes>
         <Route
           path="/"
+          element={
+            <Suspense fallback={<Loader />}>
+              <LazyIndex />
+            </Suspense>
+          }
+        >
+          <Route
+            path="/"
+            index
+            element={
+              <Suspense fallback={<Loader />}>
+                <LazyHome />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/category/*"
+            index
+            element={
+              <Suspense fallback={<Loader />}>
+                <LazyCategory />
+              </Suspense>
+            }
+          />
+        </Route>
+        <Route
+          path="/video/:name"
           index
           element={
-            <Suspense fallback={<h1>Loading</h1>}>
-              <LazyHome />
+            <Suspense fallback={<Loader />}>
+              <LazyVideo />
             </Suspense>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

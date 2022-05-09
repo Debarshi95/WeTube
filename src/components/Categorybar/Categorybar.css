@@ -1,0 +1,26 @@
+.Categorybar__root {
+  width: 100%;
+  overflow: auto hidden;
+}
+.Categorybar__root::-webkit-scrollbar {
+  display: none;
+}
+.Categorybar__link {
+  border-radius: 2.5rem;
+}
+.Categorybar__link > a {
+  padding: 0.5rem 1rem;
+  min-width: 8rem;
+  margin: 14px 8px;
+}
+.Categorybar__link > a:hover {
+  background-color: var(--color-red-hover);
+}
+
+@media screen and (max-width: 422px) {
+  .Categorybar__link > a {
+    padding: 4px 12px;
+    min-width: 8rem;
+    margin: 14px 8px;
+  }
+}

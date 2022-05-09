@@ -1,6 +1,5 @@
 .Home__root {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
 }
 .Home__cardContainer {
   display: grid;
@@ -14,8 +13,6 @@
     gap: 0;
   }
   .Home__root {
-    width: 100%;
-    padding: 1rem;
     margin: 0;
   }
 }

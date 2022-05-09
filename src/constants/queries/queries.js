@@ -6,19 +6,58 @@ const FETCH_VIDEOS = gql`
       id
       title
       description
-      likes
-      viewCount
       url
-      imageUrl
-      uploadedBy {
-        username
-      }
-      categoryId {
-        id
+      thumbnail
+      categories {
         name
+      }
+      user {
+        username
       }
     }
   }
 `;
 
-export { FETCH_VIDEOS };
+const FETCH_CATEGORY = gql`
+  query getCategories {
+    categories: getAllCategories {
+      id
+      name
+    }
+  }
+`;
+
+const FETCH_VIDEO_BY_CATEGORY = gql`
+  query getVideosByCategory($categoryName: String!) {
+    videos: getVideoByCategory(categoryName: $categoryName) {
+      id
+      title
+      description
+      url
+      thumbnail
+      user {
+        username
+      }
+    }
+  }
+`;
+
+const FETCH_VIDEO_BY_ID = gql`
+  query getVideoById($videoId: String!) {
+    video: getVideoById(videoId: $videoId) {
+      id
+      title
+      description
+      url
+      thumbnail
+      categories {
+        name
+      }
+      user {
+        username
+      }
+    }
+  }
+`;
+
+export { FETCH_VIDEOS, FETCH_CATEGORY, FETCH_VIDEO_BY_CATEGORY, FETCH_VIDEO_BY_ID };

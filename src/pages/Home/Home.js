@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Card, SideDrawer } from 'components';
+import { Card, Loader } from 'components';
 import { FETCH_VIDEOS } from 'constants/queries/queries';
 import './Home.css';
 
@@ -8,18 +8,15 @@ const Home = () => {
 
   return (
     <section className="Home__root">
-      <SideDrawer />
-      <div>
-        {!loading ? (
-          <article className="Home__cardContainer">
-            {data?.videos?.map((video) => (
-              <Card item={video} key={video.id} />
-            ))}
-          </article>
-        ) : (
-          'Loading'
-        )}
-      </div>
+      {!loading ? (
+        <article className="Home__cardContainer">
+          {data?.videos?.map((video) => (
+            <Card item={video} key={video.id} />
+          ))}
+        </article>
+      ) : (
+        <Loader />
+      )}
     </section>
   );
 };

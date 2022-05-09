@@ -1,5 +1,9 @@
 .Navbar__root {
-  width: '100%';
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: var(--color-dark);
 }
 .Navbar__root > nav {
   width: 90%;
@@ -18,11 +22,19 @@
 }
 
 @media screen and (max-width: 600px) {
+  .Navbar__root {
+    width: 100%;
+    padding: 0.1rem;
+    background-color: var(--color-red);
+  }
   .Navbar--main {
     display: none;
   }
   .Navbar__root a {
     padding: 0.4rem 0.5rem;
     min-width: 4rem;
+  }
+  .Navbar__root a:hover {
+    color: var(--color-white);
   }
 }

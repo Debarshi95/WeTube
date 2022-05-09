@@ -1,7 +1,7 @@
 import Text from 'components/Text/Text';
 import cn from 'classnames';
 import { useSideDrawerContext } from 'providers';
-import { AiOutlineCompass, AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineCompass } from 'react-icons/ai';
 import { MdOutlineClear } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import './SideDrawer.css';
@@ -12,11 +12,11 @@ const links = [
     icon: <AiOutlineCompass size="1.75rem" color="inherit" />,
     pathname: '/',
   },
-  {
-    name: 'Explore',
-    icon: <AiOutlineHome size="1.75rem" color="inherit" />,
-    pathname: '/explore',
-  },
+  // {
+  //   name: 'Explore',
+  //   icon: <AiOutlineHome size="1.75rem" color="inherit" />,
+  //   pathname: '/explore',
+  // },
 ];
 
 const SideDrawer = () => {
