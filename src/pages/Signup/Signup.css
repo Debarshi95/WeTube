@@ -1,19 +1,18 @@
-.SignIn__root {
-  min-height: 80vh;
+.Signup__root {
+  min-height: 70vh;
   width: 100%;
   padding: 1rem;
 }
 
-.SignIn__formContainer {
+.Signup__formContainer {
   max-width: 32rem;
   margin: 0 auto;
   padding: 2rem;
   position: relative;
-  transform: translate(0, 10%);
   border-radius: 4px;
   box-shadow: var(--color-box-shadow) 0px 1px 4px;
 }
-.SignIn__button {
+.Signup__button {
   margin-top: 0.75rem;
   width: 100%;
   padding: 12px;
@@ -21,7 +20,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .SignIn__formContainer {
+  .Signup__formContainer {
     box-shadow: none;
   }
 }

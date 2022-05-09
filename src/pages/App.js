@@ -1,11 +1,13 @@
-import { Loader, Navbar, NotFound } from 'components';
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Loader, Navbar, NotFound, PrivateRoute } from 'components';
 
 const LazyIndex = React.lazy(() => import('./IndexPage/IndexPage'));
 const LazyHome = React.lazy(() => import('./Home/Home'));
 const LazyCategory = React.lazy(() => import('./Category/Category'));
 const LazyVideo = React.lazy(() => import('./Video/Video'));
+const LazySignIn = React.lazy(() => import('./SignIn/SignIn'));
+const LazySignup = React.lazy(() => import('./Signup/Signup'));
 
 const App = () => {
   return (
@@ -25,7 +27,9 @@ const App = () => {
             index
             element={
               <Suspense fallback={<Loader />}>
-                <LazyHome />
+                <PrivateRoute>
+                  <LazyHome />
+                </PrivateRoute>
               </Suspense>
             }
           />
@@ -46,6 +50,24 @@ const App = () => {
           element={
             <Suspense fallback={<Loader />}>
               <LazyVideo />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/signin"
+          index
+          element={
+            <Suspense fallback={<Loader />}>
+              <LazySignIn />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/signup"
+          index
+          element={
+            <Suspense fallback={<Loader />}>
+              <LazySignup />
             </Suspense>
           }
         />
