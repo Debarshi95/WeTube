@@ -1,0 +1,14 @@
+.PlayerCard__root {
+  background-color: var(--color-modal-form);
+  width: 100%;
+  margin-right: 1rem;
+}
+.PlayerCard__contentWrapper {
+  padding: 0.7rem 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .PlayerCard__contentWrapper {
+    padding: 1rem;
+  }
+}
