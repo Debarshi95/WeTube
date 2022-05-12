@@ -2,21 +2,26 @@ import Text from 'components/Text/Text';
 import cn from 'classnames';
 import { useSideDrawerContext } from 'providers';
 import { AiOutlineCompass } from 'react-icons/ai';
-import { MdOutlineClear } from 'react-icons/md';
+import { MdOutlineClear, MdOutlineWatchLater, MdHistory } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import './SideDrawer.css';
 
 const links = [
   {
     name: 'Home',
-    icon: <AiOutlineCompass size="1.75rem" color="inherit" />,
+    icon: <AiOutlineCompass size="1.5rem" color="inherit" />,
     pathname: '/',
   },
-  // {
-  //   name: 'Explore',
-  //   icon: <AiOutlineHome size="1.75rem" color="inherit" />,
-  //   pathname: '/explore',
-  // },
+  {
+    name: 'Watch Later',
+    icon: <MdOutlineWatchLater size="1.5rem" color="inherit" />,
+    pathname: '/watchlater',
+  },
+  {
+    name: 'History',
+    icon: <MdHistory size="1.5rem" color="inherit" />,
+    pathname: '/history',
+  },
 ];
 
 const SideDrawer = () => {
