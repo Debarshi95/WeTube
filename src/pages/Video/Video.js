@@ -1,18 +1,16 @@
 import { useQuery } from '@apollo/client';
 import { useMediaQuery } from 'react-responsive';
-import { AiOutlineLike } from 'react-icons/ai';
-import { RiPlayListAddFill } from 'react-icons/ri';
-import { Loader, SideDrawer, Text, Card, CardPlayer } from 'components';
-import { FETCH_VIDEO_BY_ID, FETCH_VIDEOS } from 'constants/queries/queries';
 import { useLocation } from 'react-router-dom';
+import { Loader, Text, Card, PlayerCard, VideoPlayer } from 'components';
+import { FETCH_VIDEO_BY_ID, FETCH_VIDEOS } from 'constants/queries/queries';
 import './Video.css';
 
 const Video = () => {
   const { state } = useLocation();
 
-  const { data, loading } = useQuery(FETCH_VIDEO_BY_ID, {
+  const { data, loading, refetch } = useQuery(FETCH_VIDEO_BY_ID, {
     variables: {
-      videoId: state?.id,
+      videoId: state?.id || '',
     },
   });
 
@@ -20,52 +18,41 @@ const Video = () => {
 
   const md = useMediaQuery({ minWidth: 768 });
 
+  if (loading) return <Loader />;
+
   return (
     <section className="Video__root">
-      {loading && <Loader />}
-      <SideDrawer />
-      <article className="Video__wrapper">
-        <div className="Video__mainCard">
-          {data?.video && (
-            <div className="Video__container">
-              <CardPlayer url={data.video.url} />
-              <div className="px-2 mt-2 mb-1">
-                <div className="d-flex content-between">
-                  <div className="w-20 d-flex items-end mb-1">
-                    <AiOutlineLike size="2rem" cursor="pointer" />
-                    <span className="text-12">LIKE</span>
-                  </div>
-                  <div>
-                    <RiPlayListAddFill size="1.5rem" cursor="pointer" />
-                  </div>
-                </div>
-
-                <Text size="sm" align="start" className="pb-2 w-full h-full ">
-                  {data.video.description}
-                </Text>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="Video__watchContainer">
-          <Text size="md" className="text-bold mb-1">
-            Watch More
-          </Text>
-
-          {videoData?.videos &&
-            videoData.videos.slice(5, 12).map((video) => (
-              <Card
-                className="Video__card"
-                key={video.id}
-                item={video}
-                imgProps={{
-                  width: '100%',
-                  height: md ? '18rem' : '12rem',
-                }}
-              />
-            ))}
-        </div>
+      <article className="Video__container">
+        {data?.video && (
+          <PlayerCard
+            shouldAddToView
+            enableWatchLater
+            enablePlaylist
+            refetchVideos={refetch}
+            video={data.video}
+            ellipsisText={!md}
+          >
+            <VideoPlayer url={data.video.url} className="Video__playerCard" />
+          </PlayerCard>
+        )}
       </article>
+      <div className="Video__watchContainer">
+        <Text size="md" className="text-bold mb-1">
+          Watch More
+        </Text>
+
+        {videoData?.videos?.slice(8, 16).map((video) => (
+          <Card
+            className="Video__card"
+            key={video.id}
+            item={video}
+            imgProps={{
+              width: '100%',
+              height: md ? '18rem' : '14rem',
+            }}
+          />
+        ))}
+      </div>
     </section>
   );
 };
