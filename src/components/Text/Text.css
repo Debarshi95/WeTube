@@ -25,14 +25,11 @@
 .Text--bold {
   font-weight: bold;
 }
+
 .Text--uppercase {
   text-transform: uppercase;
 }
-.Text--ellipsis {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
+
 .Text--error {
   color: var(--color-red);
   border: 1px solid var(--color-red);
@@ -40,9 +37,20 @@
   padding: 6px 10px;
 }
 
+.Text--ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .Text--red {
   color: var(--color-red);
 }
+
+.Text--white {
+  color: var(--color-white);
+}
+
 .Text--xs {
   font-size: 0.9rem;
 }

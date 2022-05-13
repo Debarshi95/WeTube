@@ -23,5 +23,6 @@
 @media screen and (max-width: 600px) {
   .SignIn__formContainer {
     box-shadow: none;
+    padding: 2rem 0.5rem;
   }
 }

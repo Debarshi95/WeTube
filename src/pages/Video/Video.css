@@ -8,6 +8,9 @@
 .Video__container {
   flex: 1;
   margin-right: 1.5rem;
+  position: sticky;
+  top: 5rem;
+  height: fit-content;
 }
 .Video__watchContainer {
   width: 24rem;
@@ -15,6 +18,10 @@
 
 .Video__playerContainer {
   height: 60vh;
+}
+
+.Video__watchCard {
+  margin-bottom: 1rem;
 }
 @media screen and (max-width: 984px) {
   .Video__root {
@@ -25,6 +32,7 @@
   }
   .Video__container {
     margin: 0;
+    position: static;
   }
   .Video__watchContainer {
     width: 100%;
