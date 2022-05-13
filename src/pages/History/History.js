@@ -50,26 +50,32 @@ const History = () => {
 
   return (
     <div className="History__root">
-      <Button className="ml-auto mb-1" onClick={() => handleDeleteView({ type: 'ALL' })}>
-        Clear History
-      </Button>
-      <article className="History__container">
-        {data?.views?.map((view) => (
-          <PlayerCard
-            video={view.video}
-            user={user}
-            key={view.id}
-            refetchVideos={refetch}
-            enableWatchLater
-            className="History__Card"
-            cardActionProps={{
-              icon: <MdDeleteOutline cursor="pointer" size="1.5rem" />,
-              onClick: (args) => handleDeleteView({ viewId: view.id, ...args }),
-            }}
-          >
-            <VideoPlayer url={view.video.url} />
-          </PlayerCard>
-        ))}
+      {data?.views?.length ? (
+        <Button className="ml-auto mb-1" onClick={() => handleDeleteView({ type: 'ALL' })}>
+          Clear History
+        </Button>
+      ) : null}
+      <article>
+        {data?.views?.length ? (
+          data?.views?.map((view) => (
+            <PlayerCard
+              video={view.video}
+              user={user}
+              key={view.id}
+              refetchVideos={refetch}
+              enableWatchLater
+              className="History__Card"
+              cardActionProps={{
+                icon: <MdDeleteOutline cursor="pointer" size="1.5rem" />,
+                onClick: (args) => handleDeleteView({ viewId: view.id, ...args }),
+              }}
+            >
+              <VideoPlayer url={view.video.url} />
+            </PlayerCard>
+          ))
+        ) : (
+          <Text size="md">No History found. Try Seeing some videos</Text>
+        )}
       </article>
     </div>
   );
