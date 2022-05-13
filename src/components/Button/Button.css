@@ -32,7 +32,7 @@
   cursor: initial;
 }
 
-.Button__root:hover {
+.Button--hover-white:hover {
   color: var(--color-red);
   background-color: var(--color-white);
 }
