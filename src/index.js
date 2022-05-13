@@ -7,15 +7,17 @@ import reportWebVitals from './reportWebVitals';
 import 'styles/index.css';
 
 ReactDOM.render(
-  <ErrorBoundary>
-    <ApolloProvider>
-      <AuthProvider>
-        <SideDrawerProvider>
-          <App />
-        </SideDrawerProvider>
-      </AuthProvider>
-    </ApolloProvider>
-  </ErrorBoundary>,
+  <React.StrictMode>
+    <ErrorBoundary>
+      <ApolloProvider>
+        <AuthProvider>
+          <SideDrawerProvider>
+            <App />
+          </SideDrawerProvider>
+        </AuthProvider>
+      </ApolloProvider>
+    </ErrorBoundary>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

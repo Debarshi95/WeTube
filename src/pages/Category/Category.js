@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Card, Loader } from 'components';
 import { FETCH_VIDEO_BY_CATEGORY } from 'constants/queries/queries';
+import './Category.css';
 
 const Category = () => {
   const { pathname } = useLocation();
@@ -15,9 +16,9 @@ const Category = () => {
   });
 
   return (
-    <section className="Home__root">
+    <section className="Category__root">
       {!loading ? (
-        <article className="Home__cardContainer">
+        <article className="Category__cardContainer">
           {data?.videos?.map((video) => (
             <Card item={video} key={video.id} />
           ))}
