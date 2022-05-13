@@ -6,7 +6,8 @@
   border: none;
   border-radius: 3px;
   background-color: var(--color-input-bg);
-  font-size: 0.95rem;
+  font-size: 1.15rem;
+  color: rgb(44, 42, 42);
 }
 
 .Input__error {
