@@ -1,79 +1,111 @@
-import React, { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Loader, Navbar, NotFound, PrivateRoute } from 'components';
+import { Loader, Navbar, NotFound } from 'components';
 
-const LazyIndex = React.lazy(() => import('./IndexPage/IndexPage'));
-const LazyHome = React.lazy(() => import('./Home/Home'));
-const LazyCategory = React.lazy(() => import('./Category/Category'));
-const LazyVideo = React.lazy(() => import('./Video/Video'));
-const LazySignIn = React.lazy(() => import('./SignIn/SignIn'));
-const LazySignup = React.lazy(() => import('./Signup/Signup'));
+const IndexPage = lazy(() => import('./IndexPage/IndexPage'));
+const HomePage = lazy(() => import('./Home/Home'));
+const CategoryPage = lazy(() => import('./Category/Category'));
+const VideoPage = lazy(() => import('./Video/Video'));
+const SignInPage = lazy(() => import('./SignIn/SignIn'));
+const SignUpPage = lazy(() => import('./Signup/Signup'));
+const HistoryPage = lazy(() => import('./History/History'));
+const PlayListPage = lazy(() => import('./Playlist/Playlist'));
+const WatchLaterPage = lazy(() => import('./WatchLater/WatchLater'));
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<Loader />}>
-              <LazyIndex />
-            </Suspense>
-          }
-        >
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
           <Route
             path="/"
-            index
             element={
               <Suspense fallback={<Loader />}>
-                <PrivateRoute>
-                  <LazyHome />
-                </PrivateRoute>
+                <IndexPage />
               </Suspense>
             }
-          />
+          >
+            <Route
+              path="/"
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <HomePage />
+                </Suspense>
+              }
+            />
 
+            <Route
+              path="category/*"
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <CategoryPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/history"
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <HistoryPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/playlist"
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <PlayListPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/watchlater"
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <WatchLaterPage />
+                </Suspense>
+              }
+            />
+          </Route>
           <Route
-            path="/category/*"
+            path="/video/:name"
             index
             element={
               <Suspense fallback={<Loader />}>
-                <LazyCategory />
+                <VideoPage />
               </Suspense>
             }
           />
-        </Route>
-        <Route
-          path="/video/:name"
-          index
-          element={
-            <Suspense fallback={<Loader />}>
-              <LazyVideo />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/signin"
-          index
-          element={
-            <Suspense fallback={<Loader />}>
-              <LazySignIn />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/signup"
-          index
-          element={
-            <Suspense fallback={<Loader />}>
-              <LazySignup />
-            </Suspense>
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="/signin"
+            index
+            element={
+              <Suspense fallback={<Loader />}>
+                <SignInPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/signup"
+            index
+            element={
+              <Suspense fallback={<Loader />}>
+                <SignUpPage />
+              </Suspense>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+      <Toaster position="top-center" reverseOrder={false} />
+    </div>
   );
 };
 
