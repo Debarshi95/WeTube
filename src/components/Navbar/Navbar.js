@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -30,17 +31,22 @@ const Navbar = () => {
           </Link>
         </div>
         {user ? (
-          <Button size="md" variant="contained" className="text-bold" onClick={logout}>
+          <Button
+            size="md"
+            variant="contained"
+            className="Button--hover-white text-bold"
+            onClick={logout}
+          >
             Logout
           </Button>
         ) : (
-          <Button size="md" variant="contained" className="text-bold">
+          <Link to="/signin" className="Text--white py-1 text-bold">
             Login
-          </Button>
+          </Link>
         )}
       </nav>
     </div>
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

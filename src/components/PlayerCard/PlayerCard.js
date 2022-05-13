@@ -1,55 +1,27 @@
 import cn from 'clsx';
-import { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-hot-toast';
-import { RiPlayListAddFill, RiThumbUpLine } from 'react-icons/ri';
-import { MdOutlineWatchLater } from 'react-icons/md';
+import { RiThumbUpLine } from 'react-icons/ri';
 import { IoMdThumbsUp } from 'react-icons/io';
-import { Text, Modal } from 'components';
-import { UPDATE_LIKE, UPDATE_VIEW, UPDATE_WATCH_LATER } from 'constants/queries/queries';
+import { Text } from 'components';
+import { useAuthContext } from 'providers';
+import { UPDATE_LIKE } from 'constants/queries/queries';
 import { isVideoLiked } from 'utils/helperFuncs';
 import './PlayerCard.css';
-import { useAuthContext } from 'providers';
 
 const PlayerCard = ({
   video,
   className,
   refetchVideos,
-  shouldAddToView,
-  enableWatchLater,
-  enablePlaylist,
+  cardActionProps,
   children,
   ellipsisText,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [updateView] = useMutation(UPDATE_VIEW);
+  const { user } = useAuthContext();
 
   const [updateLike] = useMutation(UPDATE_LIKE);
 
-  const [updateWatchLater] = useMutation(UPDATE_WATCH_LATER);
-
-  const { user } = useAuthContext();
-
   const liked = isVideoLiked(video?.likes, user?.id);
-
-  useEffect(() => {
-    if (shouldAddToView && user?.id) {
-      updateView({
-        variables: {
-          videoId: video.id,
-        },
-      });
-    }
-  }, [shouldAddToView, updateView, user?.id, video.id]);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.classList.add('Modal--open');
-    } else {
-      document.body.classList.remove('Modal--open');
-    }
-  }, [isModalOpen]);
 
   const handleLike = async (e) => {
     e.preventDefault();
@@ -71,62 +43,56 @@ const PlayerCard = ({
     return toast.error('You must be logged in to like a video');
   };
 
-  const handleModalClick = (e, value) => {
-    e.stopPropagation();
-    setIsModalOpen(value);
-  };
-
-  const handleWatchLater = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (user?.id) {
-      const res = await updateWatchLater({
-        variables: {
-          videoId: video?.id || '',
-        },
-      });
-      const { success, message = '' } = res.data?.updateWatchLater || false;
-      if (success) {
-        toast.success(message);
-      }
-      return null;
-    }
-
-    return toast.error('You must be logged in to like a video');
-  };
-
   return (
     <section className={cn('PlayerCard__root', className)}>
       {children}
       <div className="PlayerCard__contentWrapper">
         <div className="d-flex content-between">
-          <div className="w-20 d-flex items-end mb-1">
+          <div
+            role="button"
+            aria-hidden
+            className="w-20 d-flex items-end mb-1"
+            onClick={handleLike}
+          >
             {liked ? (
-              <IoMdThumbsUp size="1.6rem" cursor="pointer" onClick={handleLike} />
+              <IoMdThumbsUp size="1.6rem" cursor="pointer" />
             ) : (
-              <RiThumbUpLine size="1.6rem" cursor="pointer" onClick={handleLike} />
+              <RiThumbUpLine size="1.6rem" cursor="pointer" />
             )}
             <span className="text-10 d-block ml-half">{liked?.user?.id ? 'Unlike' : 'Like'}</span>
           </div>
 
           <div className="d-flex items-center">
-            {enablePlaylist && (
+            {cardActionProps && Array.isArray(cardActionProps) ? (
+              cardActionProps.map((prop, idx) => (
+                <div
+                  key={idx}
+                  className="p-icon"
+                  role="button"
+                  aria-hidden
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    prop?.onClick({ user, video });
+                  }}
+                >
+                  {prop?.icon}
+                </div>
+              ))
+            ) : (
               <div
                 className="p-icon"
                 role="button"
                 aria-hidden
-                onClick={(e) => handleModalClick(e, true)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  cardActionProps?.onClick({ user, video });
+                }}
               >
-                <RiPlayListAddFill size="1.5rem" cursor="pointer" />
+                {cardActionProps?.icon}
               </div>
             )}
-
-            <div className="p-icon">
-              {enableWatchLater && (
-                <MdOutlineWatchLater size="1.6rem" cursor="pointer" onClick={handleWatchLater} />
-              )}
-            </div>
           </div>
         </div>
 
@@ -140,23 +106,12 @@ const PlayerCard = ({
           {video?.description}
         </Text>
       </div>
-
-      {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={(e) => handleModalClick(e, false)}
-          videoId={video.id}
-        />
-      )}
     </section>
   );
 };
 
 PlayerCard.defaultProps = {
   refetchVideos: () => null,
-  shouldAddToView: false,
-  enableWatchLater: false,
-  enablePlaylist: false,
   cardPlayerClassName: '',
   ellipsisText: false,
 };
