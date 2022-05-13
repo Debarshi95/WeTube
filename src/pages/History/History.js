@@ -57,7 +57,7 @@ const History = () => {
       ) : null}
       <article>
         {data?.views?.length ? (
-          data?.views?.map((view) => (
+          data.views.map((view) => (
             <PlayerCard
               video={view.video}
               user={user}
@@ -74,7 +74,9 @@ const History = () => {
             </PlayerCard>
           ))
         ) : (
-          <Text size="md">No History found. Try Seeing some videos</Text>
+          <Text size="md" className="my-6">
+            No History found. Try Seeing some videos
+          </Text>
         )}
       </article>
     </div>
