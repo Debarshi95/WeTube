@@ -4,7 +4,7 @@ import { FETCH_VIDEOS } from 'constants/queries/queries';
 import './Home.css';
 
 const Home = () => {
-  const { data, loading } = useQuery(FETCH_VIDEOS);
+  const { data, loading } = useQuery(FETCH_VIDEOS, { fetchPolicy: 'network-only' });
 
   return (
     <section className="Home__root">

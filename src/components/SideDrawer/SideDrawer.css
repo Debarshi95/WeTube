@@ -3,7 +3,7 @@
   height: 100vh;
   position: fixed;
   top: 0;
-  width: 240px;
+  width: 280px;
   left: 0;
   z-index: 2;
   padding: 1rem;
@@ -12,14 +12,15 @@
 .SideDrawer__links {
   padding: 0.2rem 1rem;
   display: block;
-  margin-top: 0.5rem;
+  margin-top: 10px;
   border-radius: 4px;
-  border: 1.5px solid var(--color-red);
+  border: 2px solid var(--color-modal-form);
+  color: var(--color-input-bg);
 }
 
 .SideDrawer__links:hover {
   color: var(--color-text-primary);
-  background-color: var(--color-red);
+  background-color: var(--color-dark);
 }
 
 .slide-in {

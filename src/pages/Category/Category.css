@@ -1,0 +1,17 @@
+.Category__root {
+  width: 100%;
+}
+.Category__cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .Category__cardContainer {
+    display: block;
+  }
+  .Category__root {
+    margin: 0;
+  }
+}

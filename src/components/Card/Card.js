@@ -29,7 +29,7 @@ const Card = ({ item, className, cardContentClassName, imgProps, cardContentProp
               </Text>
             </Text>
             <Text size="xs" align="start">
-              <span className="text-bold">Views</span> {item.viewCount}
+              <span className="text-bold px-1">Views {item?.views}</span>
             </Text>
           </div>
         </div>

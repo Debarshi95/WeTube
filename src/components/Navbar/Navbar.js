@@ -1,12 +1,24 @@
-import Button from 'components/Button/Button';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { useAuthContext, useSideDrawerContext } from 'providers';
+import { Button } from 'components';
+import { LOGOUT_USER } from 'constants/queries/queries';
+import { deleteLocalStorageData } from 'utils/helperFuncs';
 import './Navbar.css';
-import { useSideDrawerContext } from 'providers';
 
 const Navbar = () => {
-  const user = true;
+  const { user = null, setUser } = useAuthContext();
   const { toggle } = useSideDrawerContext();
+
+  const [logout] = useMutation(LOGOUT_USER, {
+    onCompleted: () => {
+      deleteLocalStorageData('token');
+      setUser(null);
+    },
+  });
+
   return (
     <div className="Navbar__root">
       <nav className="d-flex content-between items-center">
@@ -19,20 +31,22 @@ const Navbar = () => {
           </Link>
         </div>
         {user ? (
-          <div className="text-bold text-10">
-            <Link to="/history">History</Link>
-            <Link to="/watchlist" className="ml-auto">
-              Watch Later
-            </Link>
-          </div>
-        ) : (
-          <Button size="md" variant="contained" className="text-bold">
-            Login
+          <Button
+            size="md"
+            variant="contained"
+            className="Button--hover-white text-bold"
+            onClick={logout}
+          >
+            Logout
           </Button>
+        ) : (
+          <Link to="/signin" className="Text--white py-1 text-bold">
+            Login
+          </Link>
         )}
       </nav>
     </div>
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

@@ -1,58 +1,43 @@
 .Video__root {
   max-width: 90%;
   margin: 2rem auto;
-}
-
-.Video__container {
-  height: fit-content;
-  background-color: var(--color-dark-secondary);
-  position: sticky;
-  top: 5.5rem;
-  width: 100%;
-}
-
-.Video__wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.Video__mainCard {
+.Video__container {
   flex: 1;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
+  position: sticky;
+  top: 5rem;
+  height: fit-content;
 }
-
-.Video__card {
+.Video__watchContainer {
   width: 24rem;
 }
 
-@media screen and (max-width: 1068px) {
+.Video__playerContainer {
+  height: 60vh;
+}
+
+.Video__watchCard {
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 984px) {
   .Video__root {
-    margin: 0;
-    padding: 0 1.5rem;
-    max-width: 100%;
-    height: fit-content;
-  }
-
-  .Video__wrapper {
     display: block;
+    margin: 0;
+    max-width: 100%;
+    padding: 1rem;
   }
-
-  .Video__watchContainer {
-    margin-top: 2rem;
-  }
-
   .Video__container {
-    width: 100%;
     margin: 0;
-    position: relative;
-    top: 0;
+    position: static;
   }
-
-  .Video__card {
+  .Video__watchContainer {
     width: 100%;
   }
-
-  .Video__mainCard {
-    margin: 0;
+  .Video__watchContainer > p {
+    margin-top: 1.5rem;
   }
 }
