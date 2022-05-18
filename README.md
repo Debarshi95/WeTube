@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+[![Actions Status](https://github.com/Debarshi95/WeTube/workflows/Build%20and%20Deploy/badge.svg)](https://github.com/Debarshi95/Wetube/actions)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FlixNotes
 
-## Available Scripts
+A ReactJS web app for managing notes.
 
-In the project directory, you can run:
+## Demo
 
-### `yarn start`
+[Deployed on Netlify using github actions](https://debarshib-wetube.netlify.app)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Authentication facility for old & new users
+- Authenticated users can
+  - can see a landing page with a list of few categories
+  - sort videos based on categories
+- Individual video listing page with suggested videos
+- Playlist, Watch History, Watch Later functionality for authenticated users
+- PlayList Management:
+  - User can create playlist.
+  - User can add/delete video from playlist
+  - User can delete a playlist.
+- History:
+  - Each register user when sees individual video has a view history
+  - Videos in view history can be deleted by user
+  - User can also clear full history
+- Watch Later:
+  - Each user can add/delete video to watch later
+  - Video added to watch later can seen in watch later route by user
+- Each registered user can like/dislike video anytime they want.
+- Custom view count for videos watched.
+- LazyLoading/Code-splitting of components to dynamically load at runtime
+- Error management using ErrorBoundary to catch and show fallback UI.
+- Loading Spinner when fetching initial data.
+- Responsive UI for all screens (Desktop, Tablet, Mobile)
 
-### `yarn test`
+## Built using:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [ReactJS](https://reactjs.org/) - Frontend framework
+- [React Router](https://reactrouter.com/) - For routing & navigation
+- [React-Hot-Toast](https://react-hot-toast.com) - to show Toast Notifications
+- [ApolloGraphql](https://www.apollographql.com) - To make network to backend graphql server
 
-### `yarn build`
+## Screenshots
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Desktop
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Desktop-1](screenshots/desktop1.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Desktop-2](screenshots/desktop2.png)
 
-### `yarn eject`
+![Genre](screenshots/desktop3.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Info](screenshots/desktop4.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Mobile
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<br/>
+<div align="center">
 
-## Learn More
+![Mobile-1](screenshots/mobile1.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Mobile-2](screenshots/mobile2.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Mobile-3](screenshots/mobile3.png)
 
-### Code Splitting
+![Mobile-4](screenshots/mobile4.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+</div>
 
-### Analyzing the Bundle Size
+## Run Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Clone the project
+  `git clone https://github.com/Debarshi95/WeTube.git`
+- Go to the project directory
+- cd wetube
+- Install dependencies
+  `yarn`
+- Create a **.env** file
+- Create a project inside Google Firebase and export the configuration
+- Add the following configuration to your .env file
 
-### Making a Progressive Web App
+```
+REACT_APP_APOLLO_URI="Backend server url"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Start the server
+  `yarn start`
