@@ -19,7 +19,7 @@ const Modal = ({ onClose, isOpen, videoId }) => {
   const inputRef = useRef();
   const { user } = useAuthContext();
 
-  const { data: playlistData, refetch: refectPlaylist } = useQuery(FETCH_USER_PLAYLIST);
+  const { data: playlistData, refetch: refetchPlaylist } = useQuery(FETCH_USER_PLAYLIST);
 
   const [createPlaylist] = useMutation(CREATE_PLAYLIST);
 
@@ -28,8 +28,11 @@ const Modal = ({ onClose, isOpen, videoId }) => {
   const [deletePlaylist] = useMutation(DELETE_PLAYLIST);
 
   const handleCreatePlaylist = async () => {
-    if (!user.id) return;
+    if (!user.id) return null;
 
+    if (inputRef.current.value === '') {
+      return toast.error('Playlist name is required');
+    }
     try {
       const res = await createPlaylist({
         variables: {
@@ -41,7 +44,7 @@ const Modal = ({ onClose, isOpen, videoId }) => {
       const { success = false, message = 'Some error occurred' } = res.data?.createPlaylist || {};
       if (success) {
         inputRef.current.value = '';
-        refectPlaylist();
+        refetchPlaylist();
         toast.success(message);
       } else {
         toast.error(message);
@@ -49,6 +52,7 @@ const Modal = ({ onClose, isOpen, videoId }) => {
     } catch (error) {
       toast.error(error?.message || '');
     }
+    return null;
   };
 
   const handleUpdatePlaylist = async (e, playlistId) => {
@@ -63,7 +67,7 @@ const Modal = ({ onClose, isOpen, videoId }) => {
       });
       const { success = false, message = 'Some error occurred' } = res.data?.updatePlaylist || {};
       if (success) {
-        refectPlaylist();
+        refetchPlaylist();
         toast.success(message);
       } else {
         toast.error(message);
@@ -86,7 +90,7 @@ const Modal = ({ onClose, isOpen, videoId }) => {
       });
       const { success = false, message = 'Some error occurred' } = res.data?.deletePlaylist || {};
       if (success) {
-        refectPlaylist();
+        refetchPlaylist();
         toast.success(message);
       } else {
         toast.error(message);
@@ -100,7 +104,7 @@ const Modal = ({ onClose, isOpen, videoId }) => {
     <ReactModal
       isOpen={isOpen}
       onRequestClose={onClose}
-      portalClassName="Modal__root"
+      shouldCloseOnOverlayClick
       style={{
         content: {
           background: 'transparent',
@@ -108,9 +112,12 @@ const Modal = ({ onClose, isOpen, videoId }) => {
           padding: '1rem',
           inset: '5.5rem 0',
           height: '80%',
+          width: '24rem',
+          margin: '0 auto',
         },
         overlay: {
-          backgroundColor: 'transparent',
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          zIndex: 999,
         },
       }}
     >

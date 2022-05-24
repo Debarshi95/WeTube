@@ -10,7 +10,7 @@
 }
 
 .SideDrawer__links {
-  padding: 0.2rem 1rem;
+  padding: 0.3rem 1rem;
   display: block;
   margin-top: 10px;
   border-radius: 4px;
@@ -19,8 +19,8 @@
 }
 
 .SideDrawer__links:hover {
-  color: var(--color-text-primary);
-  background-color: var(--color-dark);
+  color: var(--color-input-bg);
+  background-color: var(--color-dark-secondary);
 }
 
 .slide-in {

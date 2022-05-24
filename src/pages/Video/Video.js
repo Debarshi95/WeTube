@@ -37,14 +37,14 @@ const Video = () => {
   const md = useMediaQuery({ minWidth: 768 });
 
   useEffect(() => {
-    if (user?.id) {
+    if (user?.id && data?.video) {
       updateView({
         variables: {
           videoId: state?.id || '',
         },
       });
     }
-  }, [state?.id, updateView, user?.id]);
+  }, [data?.video, state?.id, updateView, user?.id]);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -121,16 +121,15 @@ const Video = () => {
           />
         ))}
       </div>
-      {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={(e) => {
-            e.stopPropagation();
-            handleModalClick(false);
-          }}
-          videoId={data?.video.id}
-        />
-      )}
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={(e) => {
+          e.stopPropagation();
+          handleModalClick(false);
+        }}
+        videoId={data?.video.id}
+      />
     </section>
   );
 };
