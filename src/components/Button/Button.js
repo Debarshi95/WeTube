@@ -16,7 +16,7 @@ const Button = ({ component, text, variant, className, children, ...props }) => 
     <Component
       className={cn('Button__root', className, {
         [`Button--${variant}`]: true,
-        'Button--disabled': props.disabled,
+        [`Button--${variant}-disabled`]: props.disabled,
       })}
       {...props}
     >

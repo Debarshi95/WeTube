@@ -32,9 +32,10 @@
 
 .Text--error {
   color: var(--color-red);
-  border: 1px solid var(--color-red);
+  border: 2px solid var(--color-red);
   border-radius: 4px;
   padding: 6px 10px;
+  font-weight: 600;
 }
 
 .Text--ellipsis {
