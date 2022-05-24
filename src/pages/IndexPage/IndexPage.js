@@ -2,7 +2,7 @@ import { Categorybar, SideDrawer } from 'components';
 import { Outlet, useLocation } from 'react-router-dom';
 import './IndexPage.css';
 
-const topbarLinks = [
+const TOPBAR_LINKS = [
   '/',
   '/category/science',
   '/category/technology',
@@ -13,7 +13,7 @@ const topbarLinks = [
 
 const Index = () => {
   const location = useLocation();
-  const showTopbar = topbarLinks.includes(location.pathname);
+  const showTopbar = TOPBAR_LINKS.includes(location.pathname);
   return (
     <section className="Index__root">
       <SideDrawer />

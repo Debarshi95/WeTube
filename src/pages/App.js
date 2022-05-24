@@ -15,7 +15,7 @@ const WatchLaterPage = lazy(() => import('./WatchLater/WatchLater'));
 
 const App = () => {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -105,7 +105,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" reverseOrder={false} />
-    </div>
+    </>
   );
 };
 

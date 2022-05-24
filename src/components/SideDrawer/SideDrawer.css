@@ -1,5 +1,5 @@
 .SideDrawer__root {
-  background-color: var(--color-dark-secondary);
+  background-color: var(--color-dark);
   height: 100vh;
   position: fixed;
   top: 0;
