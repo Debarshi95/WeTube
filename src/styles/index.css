@@ -61,5 +61,6 @@ a {
   margin-top: 6px;
 }
 .p-icon:hover {
-  background-color: var(--color-dark-secondary);
+  background-color: var(--color-dark);
+  border-radius: 2px;
 }

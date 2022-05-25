@@ -1,7 +1,6 @@
 import toast from 'react-hot-toast';
 import { useMutation, useQuery } from '@apollo/client';
-import { MdDeleteOutline } from 'react-icons/md';
-import { Button, VideoPlayer, Loader, Text, PlayerCard } from 'components';
+import { Button, Loader, Text, Card } from 'components';
 import { DELETE_PLAYLIST, FETCH_USER_PLAYLIST } from 'constants/queries/queries';
 import { useAuthContext } from 'providers';
 import './Playlist.css';
@@ -66,19 +65,15 @@ const Playlist = () => {
             </header>
             <div className="Playlist__cardContainer">
               {playlist.videos.map((video) => (
-                <PlayerCard
-                  video={video}
+                <Card
+                  item={video}
                   key={video.id}
-                  refetchVideos={refetch}
+                  showDeleteIcon
                   className="Playlist__card"
-                  cardActionProps={{
-                    icon: <MdDeleteOutline cursor="pointer" size="1.5rem" />,
-                    onClick: (args) => handleDeletePlaylist({ playlistId: playlist.id, ...args }),
-                  }}
-                  ellipsisText
-                >
-                  <VideoPlayer url={video.url} className="Playlist__player" />
-                </PlayerCard>
+                  onDelete={(selectedVideo) =>
+                    handleDeletePlaylist({ playlistId: playlist.id, video: selectedVideo })
+                  }
+                />
               ))}
             </div>
           </div>
