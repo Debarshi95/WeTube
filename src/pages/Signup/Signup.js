@@ -3,10 +3,10 @@ import { Form, Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatErrorMsg, setLocalStorageData } from 'utils/helperFuncs';
 import { Button, Text, Input } from 'components';
+import { useAuthContext } from 'providers';
 import { validateRegister } from 'utils/validators';
 import { REGISTER_USER_MUTATION } from 'constants/queries/queries';
 import './Signup.css';
-import { useAuthContext } from 'providers';
 
 const REGISTER_USER_MUTATION_OPTIONS = {
   onCompleted: (data) => {
@@ -58,72 +58,65 @@ const Signup = () => {
   };
 
   return (
-    <div className="Signup__root">
-      <Text variant="h5" className="Text--primary mt-1" align="center" size="md">
-        Sign up to get started
-      </Text>
-      <div className="Signup__formContainer">
-        <Formik
-          initialValues={{
-            username: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-          }}
-          validationSchema={validateRegister()}
-          onSubmit={handleSubmit}
-        >
-          {({ handleSubmit: handleFormikSubmit, isSubmitting, values, errors, touched }) => {
-            return (
-              <>
-                {errors?.message && (
-                  <Text variant="p" className="Text--error mb-2 px-1" align="center" size="sm">
-                    {errors.message || 'Oops! Some error occurred'}
-                  </Text>
-                )}
-                <Form autoComplete="off" onSubmit={handleFormikSubmit}>
-                  <Input
-                    name="username"
-                    type="text"
-                    placeholder="Username"
-                    value={values.username}
-                  />
-                  <Input name="email" type="email" placeholder="Email" value={values.email} />
-                  <Input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={values.password}
-                  />
-                  <Input
-                    name="confirmPassword"
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={values.confirmPassword}
-                  />
-                  <Button
-                    component="button"
-                    type="submit"
-                    variant="contained"
-                    className="Signup__button text-bold w-10 Text--xs"
-                    disabled={Boolean(
-                      isSubmitting || !touched || values.email === '' || values.password === ''
-                    )}
-                  >
-                    {isSubmitting ? 'Submitting...' : 'Sign Up'}
-                  </Button>
-                  <Text className="my-1">
-                    Already registered?
-                    <Link to="/signin" className="Text--primary text-12 ml-half">
-                      Signin
-                    </Link>
-                  </Text>
-                </Form>
-              </>
-            );
-          }}
-        </Formik>
-      </div>
+    <div className="Signup__formContainer">
+      <Formik
+        initialValues={{
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        }}
+        validationSchema={validateRegister()}
+        onSubmit={handleSubmit}
+      >
+        {({ handleSubmit: handleFormikSubmit, isSubmitting, values, errors, touched }) => {
+          return (
+            <>
+              <Text variant="h5" className="Text--primary mt-1 mb-2" align="center" size="md">
+                Sign up to get started
+              </Text>
+              {errors?.message && (
+                <Text variant="p" className="Text--error mb-2" align="center" size="sm">
+                  {errors.message || 'Oops! Some error occurred'}
+                </Text>
+              )}
+              <Form autoComplete="off" onSubmit={handleFormikSubmit}>
+                <Input name="username" type="text" placeholder="Username" value={values.username} />
+                <Input name="email" type="email" placeholder="Email" value={values.email} />
+                <Input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  value={values.password}
+                />
+                <Input
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={values.confirmPassword}
+                />
+                <Button
+                  component="button"
+                  type="submit"
+                  variant="contained"
+                  className="text-bold w-full mt-2/5"
+                  disabled={Boolean(
+                    isSubmitting || !touched || values.email === '' || values.password === ''
+                  )}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Sign Up'}
+                </Button>
+                <Text className="my-1">
+                  Already registered?
+                  <Link to="/signin" className="Text--primary text-12 ml-half">
+                    Signin
+                  </Link>
+                </Text>
+              </Form>
+            </>
+          );
+        }}
+      </Formik>
     </div>
   );
 };
