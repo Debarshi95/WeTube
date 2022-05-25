@@ -1,4 +1,6 @@
+import Tooltip from 'react-tooltip';
 import cn from 'clsx';
+import kebabCase from 'lodash/kebabCase';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-hot-toast';
 import { RiThumbUpLine } from 'react-icons/ri';
@@ -70,6 +72,8 @@ const PlayerCard = ({
                   className="p-icon"
                   role="button"
                   aria-hidden
+                  data-tip
+                  data-for={kebabCase(prop?.tooltipText || '')}
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -77,6 +81,9 @@ const PlayerCard = ({
                   }}
                 >
                   {prop?.icon}
+                  <Tooltip place="bottom" id={kebabCase(prop?.tooltipText || '')}>
+                    {prop?.tooltipText || ''}
+                  </Tooltip>
                 </div>
               ))
             ) : (
@@ -84,6 +91,8 @@ const PlayerCard = ({
                 className="p-icon"
                 role="button"
                 aria-hidden
+                data-tip
+                data-for={kebabCase(cardActionProps?.tooltipText || '')}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -91,6 +100,9 @@ const PlayerCard = ({
                 }}
               >
                 {cardActionProps?.icon}
+                <Tooltip place="bottom" id={kebabCase(cardActionProps?.tooltipText || '')}>
+                  {cardActionProps?.tooltipText || ''}
+                </Tooltip>
               </div>
             )}
           </div>
