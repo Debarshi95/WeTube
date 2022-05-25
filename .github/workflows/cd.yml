@@ -27,6 +27,8 @@ jobs:
       - name: Build
         env:
           REACT_APP_APOLLO_URI: ${{ secrets.REACT_APP_APOLLO_URI }}
+          REACT_APP_GUEST_EMAIL: ${{ secrets.REACT_APP_GUEST_EMAIL }}
+          REACT_APP_GUEST_PASSWORD: ${{ secrets.REACT_APP_GUEST_PASSWORD }}
         run: yarn build
 
       - name: Deploy to Production
