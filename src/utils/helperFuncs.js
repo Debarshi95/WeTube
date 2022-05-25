@@ -25,3 +25,13 @@ export const formatErrorMsg = (err) => {
 export const isVideoLiked = (likes = [], userId = '') => {
   return likes?.find((like) => like?.user?.id === userId) || false;
 };
+
+export const addedToWatchLater = (watchLater = [], userId = '') => {
+  let isAdded = false;
+  watchLater?.forEach((watch) => {
+    if (watch?.user?.id === userId) {
+      isAdded = true;
+    }
+  });
+  return isAdded;
+};
