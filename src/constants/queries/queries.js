@@ -56,10 +56,12 @@ const FETCH_VIDEO_BY_ID = gql`
       user {
         username
       }
+      ...WatchLaterFragment
       ...LikeFragment
     }
   }
   ${fragments.likes}
+  ${fragments.watchLater}
 `;
 
 const REGISTER_USER_MUTATION = gql`

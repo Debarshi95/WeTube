@@ -22,6 +22,16 @@ const fragments = {
       }
     }
   `,
+  watchLater: gql`
+    fragment WatchLaterFragment on Video {
+      watchLater {
+        id
+        user {
+          id
+        }
+      }
+    }
+  `,
   videos: gql`
     fragment VideoFragment on Video {
       id
