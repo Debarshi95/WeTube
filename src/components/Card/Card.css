@@ -4,15 +4,6 @@
   overflow: hidden;
   position: relative;
 }
-.Card__root::before {
-  background-color: var(--color-dark-secondary);
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0.1;
-}
 
 .Card__content {
   max-width: 90%;
@@ -27,6 +18,11 @@
 .Card_icon {
   margin-right: 4px;
   font-size: 1.4rem;
+}
+
+.Card_icon-delete {
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
 }
 
 @media screen and (max-width: 600px) {

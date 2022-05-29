@@ -17,6 +17,9 @@ const LOGIN_USER_MUTATION_OPTIONS = {
   },
 };
 
+const GUEST_EMAIL = process.env.REACT_APP_GUEST_EMAIL;
+const GUEST_PASSWORD = process.env.REACT_APP_GUEST_PASSWORD;
+
 const SignIn = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -26,7 +29,7 @@ const SignIn = () => {
   const [login] = useMutation(LOGIN_USER, LOGIN_USER_MUTATION_OPTIONS);
 
   const handleSubmit = async (values, { resetForm }) => {
-    const pathname = state?.location?.from?.pathname || '/';
+    const pathname = state?.pathname || '/';
     let message;
     const { email, password } = values;
     try {
@@ -39,7 +42,7 @@ const SignIn = () => {
 
       if (res?.data) {
         setUser(res.data.loginUser);
-        navigate(pathname, { replace: true });
+        navigate(pathname, { replace: true, state: { id: state?.id } });
       }
       if (res?.errors) {
         message = formatErrorMsg(res?.errors);
@@ -57,58 +60,80 @@ const SignIn = () => {
   };
 
   return (
-    <div className="SignIn__root">
-      <Text variant="h5" className="Text--primary mt-1 mb-2" align="center" size="md">
-        Sign in to continue
-      </Text>
-      <div className="SignIn__formContainer">
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-          }}
-          validationSchema={validateLogin()}
-          onSubmit={handleSubmit}
-        >
-          {({ handleSubmit: handleFormikSubmit, isSubmitting, values, errors, touched }) => {
-            return (
-              <>
-                {errors?.message && (
-                  <Text variant="p" className="Text--error mb-2" align="center" size="xs">
-                    {errors.message || 'Oops! Some error occurred'}
-                  </Text>
-                )}
-                <Form autoComplete="off" onSubmit={handleFormikSubmit}>
-                  <Input name="email" type="email" placeholder="Email" value={values.email} />
-                  <Input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={values.password}
-                  />
+    <div className="SignIn__formContainer">
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        validationSchema={validateLogin()}
+        onSubmit={handleSubmit}
+      >
+        {({
+          handleSubmit: handleFormikSubmit,
+          isSubmitting,
+          values,
+          errors,
+          touched,
+          setValues,
+        }) => {
+          return (
+            <>
+              <Text variant="h5" className="Text--primary mt-1 mb-2" align="center" size="md">
+                Sign in to continue
+              </Text>
+              {errors?.message && (
+                <Text variant="p" className="Text--error mb-2" align="center" size="sm">
+                  {errors.message || 'Oops! Some error occurred'}
+                </Text>
+              )}
+              <Form autoComplete="off" onSubmit={handleFormikSubmit}>
+                <Input name="email" type="email" placeholder="Email" value={values.email} />
+                <Input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  value={values.password}
+                />
+                <div>
                   <Button
                     component="button"
                     type="submit"
                     variant="contained"
-                    className="SignIn__button text-bold w-10 Text--xs"
+                    className="text-bold w-full mt-2/5"
                     disabled={Boolean(
                       isSubmitting || !touched || values.email === '' || values.password === ''
                     )}
                   >
                     {isSubmitting ? 'Submitting...' : 'Sign In'}
                   </Button>
-                  <Text className="my-1">
-                    Not registered?
-                    <Link to="/signup" className="Text--primary text-12 ml-half">
-                      Sign up
-                    </Link>
-                  </Text>
-                </Form>
-              </>
-            );
-          }}
-        </Formik>
-      </div>
+                  <Button
+                    component="button"
+                    type="click"
+                    variant="outlined"
+                    className="text-bold w-full my-2/3"
+                    disabled={isSubmitting}
+                    onClick={() => {
+                      setValues({
+                        email: GUEST_EMAIL,
+                        password: GUEST_PASSWORD,
+                      });
+                    }}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Sign in as Guest user'}
+                  </Button>
+                </div>
+                <Text className="my-2/3">
+                  Not registered?
+                  <Link to="/signup" className="Text--primary text-12 ml-half">
+                    Sign up
+                  </Link>
+                </Text>
+              </Form>
+            </>
+          );
+        }}
+      </Formik>
     </div>
   );
 };

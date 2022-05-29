@@ -3,38 +3,37 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  background-color: var(--color-dark);
+  background-color: rgb(34, 33, 33);
 }
 .Navbar__root > nav {
   width: 90%;
-  margin: 8px auto;
+  margin: 0 auto;
+  padding: 1rem 0;
 }
-.Navbar__root a {
-  padding: 0.4rem 1rem;
-  min-width: 4rem;
-}
-.Navbar__root a:hover {
-  color: var(--color-red-disabled);
+
+.Navbar__navlink-main {
+  color: var(--color-red);
+  font-size: 1.35rem;
+  font-weight: bold;
 }
 .ham--icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
+  margin-right: 8px;
+  display: flex;
 }
 
 @media screen and (max-width: 600px) {
   .Navbar__root {
     width: 100%;
-    padding: 1.5px;
-    background-color: var(--color-red);
   }
-  .Navbar--main {
-    display: none;
+  .Navbar__root > nav {
+    width: 90%;
+    margin: 0 auto;
+    padding: 8px 0;
   }
-  .Navbar__root a {
-    padding: 6px 8px;
-    min-width: 4rem;
-  }
-  .Navbar__root a:hover {
-    color: var(--color-white);
+  .Navbar__navlink-main {
+    font-size: 1.2rem;
+    padding: 0;
   }
 }

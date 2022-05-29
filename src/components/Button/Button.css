@@ -8,6 +8,7 @@
   min-width: 6rem;
   font-family: inherit;
   outline: none;
+  font-size: 1rem;
 }
 
 .Button--contained {
@@ -18,21 +19,41 @@
 
 .Button--outlined {
   border: 1.75px solid var(--color-gray);
-  box-sizing: content-box;
   background-color: transparent;
+  color: var(--color-text-white);
+  padding: 7px 1rem;
 }
 
 .Button__text--capitalize {
   text-transform: uppercase;
 }
 
-.Button--disabled {
+.Button--contained-disabled {
   background-color: var(--color-red-disabled);
   pointer-events: none;
   cursor: initial;
 }
 
+.Button--outlined-disabled {
+  pointer-events: none;
+  cursor: initial;
+}
 .Button--hover-white:hover {
   color: var(--color-red);
   background-color: var(--color-white);
+}
+
+.Button--contained:hover {
+  background-color: var(--color-red-hover);
+}
+
+.Button--outlined:hover {
+  background-color: var(--color-text-primary);
+  color: var(--color-dark);
+}
+
+@media screen and (max-width: 600px) {
+  .Button--outlined {
+    padding: 4px 1rem;
+  }
 }

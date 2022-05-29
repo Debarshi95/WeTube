@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
-import { MdOutlineWatchLater } from 'react-icons/md';
+import { MdOutlineWatchLater, MdWatchLater } from 'react-icons/md';
 import { RiPlayListAddFill } from 'react-icons/ri';
 import { useAuthContext } from 'providers';
 import { Loader, Text, Card, PlayerCard, VideoPlayer, Modal } from 'components';
@@ -14,6 +14,7 @@ import {
   UPDATE_VIEW,
 } from 'constants/queries/queries';
 import './Video.css';
+import { addedToWatchLater } from 'utils/helperFuncs';
 
 const Video = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,15 +37,17 @@ const Video = () => {
 
   const md = useMediaQuery({ minWidth: 768 });
 
+  const isAddedToWatchLater = addedToWatchLater(data?.video?.watchLater, user?.id);
+
   useEffect(() => {
-    if (user?.id) {
+    if (user?.id && data?.video) {
       updateView({
         variables: {
           videoId: state?.id || '',
         },
       });
     }
-  }, [state?.id, updateView, user?.id]);
+  }, [data?.video, state?.id, updateView, user?.id]);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -63,6 +66,7 @@ const Video = () => {
       });
       const { success, message = '' } = res.data?.updateWatchLater || false;
       if (success) {
+        refetch();
         toast.success(message);
       }
       return null;
@@ -91,12 +95,18 @@ const Video = () => {
             ellipsisText={!md}
             cardActionProps={[
               {
-                icon: <MdOutlineWatchLater cursor="pointer" size="1.5rem" />,
+                icon: isAddedToWatchLater ? (
+                  <MdWatchLater cursor="pointer" size="1.5rem" />
+                ) : (
+                  <MdOutlineWatchLater cursor="pointer" size="1.5rem" />
+                ),
                 onClick: handleWatchLater,
+                tooltipText: isAddedToWatchLater ? 'Remove from WatchLater' : 'Add to WatchLater',
               },
               {
                 icon: <RiPlayListAddFill cursor="pointer" size="1.5rem" />,
                 onClick: () => handleModalClick(true),
+                tooltipText: 'Add to Playlist',
               },
             ]}
           >
@@ -121,16 +131,15 @@ const Video = () => {
           />
         ))}
       </div>
-      {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={(e) => {
-            e.stopPropagation();
-            handleModalClick(false);
-          }}
-          videoId={data?.video.id}
-        />
-      )}
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={(e) => {
+          e.stopPropagation();
+          handleModalClick(false);
+        }}
+        videoId={data?.video.id}
+      />
     </section>
   );
 };

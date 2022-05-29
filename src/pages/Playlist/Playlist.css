@@ -20,20 +20,18 @@
 .Playlist__card {
   width: 26rem;
   margin-right: 1rem;
-  height: 26rem;
   background-color: var(--color-dark);
 }
 
-.Playlist__player {
-  height: 18rem;
-}
 @media screen and (max-width: 600px) {
   .Playlist__card {
     width: 100%;
+    background-color: var(--color-dark-secondary);
   }
   .Playlist__cardContainer {
     display: block;
     padding: 0;
+    background-color: transparent;
   }
   .Playlist__root {
     margin: 0;
