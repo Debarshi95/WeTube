@@ -6,7 +6,13 @@ A ReactJS web app for managing notes.
 
 ## Demo
 
+### Frontend
+
 [Deployed on Netlify using github actions](https://debarshib-wetube.netlify.app)
+
+### Backend
+
+[Deployed on Heroku](https://github.com/Debarshi95/WeTube-Backend)
 
 ## Features:
 
@@ -49,9 +55,9 @@ A ReactJS web app for managing notes.
 
 ![Desktop-2](screenshots/desktop2.png)
 
-![Genre](screenshots/desktop3.png)
+![Desktop-3](screenshots/desktop3.png)
 
-![Info](screenshots/desktop4.png)
+![Desktop-4](screenshots/desktop4.png)
 
 <br/>
 
