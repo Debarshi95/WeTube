@@ -4,6 +4,7 @@ import App from 'pages/App';
 import { ApolloProvider, AuthProvider, SideDrawerProvider } from 'providers';
 import { ErrorBoundary } from 'components';
 import reportWebVitals from './reportWebVitals';
+import 'react-loading-skeleton/dist/skeleton.css';
 import 'styles/index.css';
 
 ReactDOM.render(

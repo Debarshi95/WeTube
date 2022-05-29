@@ -14,7 +14,7 @@ export const deleteLocalStorageData = (key) => {
 };
 
 export const getLocalStorageData = (key = '') => {
-  return JSON.parse(localStorage.getItem(key));
+  return localStorage.key(key) ? localStorage.getItem(key) : null;
 };
 
 export const formatErrorMsg = (err) => {

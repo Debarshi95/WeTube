@@ -7,6 +7,18 @@
   gap: 1rem;
 }
 
+.SkeletonContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+.SkeletonCard {
+  height: 17rem;
+  display: block;
+  border-radius: 8px;
+}
+
 @media screen and (max-width: 600px) {
   .Home__cardContainer {
     display: block;
