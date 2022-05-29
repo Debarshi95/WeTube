@@ -1,11 +1,6 @@
 export const toCamelCase = (str = '') => str.charAt(0).toLowerCase() + str.slice(1);
 
-export const setLocalStorageData = (key, data, removePrevious = false) => {
-  const dataExists = JSON.parse(localStorage.getItem(key));
-
-  if (removePrevious && dataExists) {
-    localStorage.removeItem(key);
-  }
+export const setLocalStorageData = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
@@ -14,7 +9,7 @@ export const deleteLocalStorageData = (key) => {
 };
 
 export const getLocalStorageData = (key = '') => {
-  return localStorage.key(key) ? localStorage.getItem(key) : null;
+  return localStorage.key(key) ? JSON.parse(localStorage.getItem(key)) : null;
 };
 
 export const formatErrorMsg = (err) => {
