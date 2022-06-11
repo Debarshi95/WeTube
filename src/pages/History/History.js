@@ -8,7 +8,7 @@ import withProtectedRoute from 'hoc/withProtectedRoute';
 import './History.css';
 
 const History = ({ user }) => {
-  const { data, refetch, loading } = useQuery(FETCH_ALL_VIEWS);
+  const { data, refetch, loading } = useQuery(FETCH_ALL_VIEWS, { fetchPolicy: 'no-cache' });
 
   const [deleteViews] = useMutation(DELETE_HISTORY);
 
@@ -50,10 +50,12 @@ const History = ({ user }) => {
               refetchVideos={refetch}
               enableWatchLater
               className="History__Card"
-              cardActionProps={{
-                icon: <MdDeleteOutline cursor="pointer" size="1.5rem" />,
-                onClick: (args) => handleDeleteView({ viewId: view.id, ...args }),
-              }}
+              cardActionProps={[
+                {
+                  icon: <MdDeleteOutline cursor="pointer" size="1.5rem" />,
+                  onClick: (args) => handleDeleteView({ viewId: view.id, ...args }),
+                },
+              ]}
             >
               <VideoPlayer url={view.video.url} />
             </PlayerCard>
