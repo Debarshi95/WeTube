@@ -65,7 +65,7 @@ const PlayerCard = ({
           </div>
 
           <div className="d-flex items-center">
-            {cardActionProps && Array.isArray(cardActionProps) ? (
+            {cardActionProps &&
               cardActionProps.map((prop, idx) => (
                 <div
                   key={idx}
@@ -85,26 +85,7 @@ const PlayerCard = ({
                     {prop?.tooltipText || ''}
                   </Tooltip>
                 </div>
-              ))
-            ) : (
-              <div
-                className="p-icon"
-                role="button"
-                aria-hidden
-                data-tip
-                data-for={kebabCase(cardActionProps?.tooltipText || '')}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  cardActionProps?.onClick({ user, video });
-                }}
-              >
-                {cardActionProps?.icon}
-                <Tooltip place="bottom" id={kebabCase(cardActionProps?.tooltipText || '')}>
-                  {cardActionProps?.tooltipText || ''}
-                </Tooltip>
-              </div>
-            )}
+              ))}
           </div>
         </div>
 
