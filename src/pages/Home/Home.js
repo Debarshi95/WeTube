@@ -12,12 +12,12 @@ const Home = () => {
     <section className="Home__root">
       {loading && (
         <Skeleton
-          count={12}
+          count={9}
           inline
           className="SkeletonCard"
           containerClassName="SkeletonContainer"
-          baseColor="#2b2a2a77"
-          highlightColor="#2d3030"
+          baseColor="#1a1616bd"
+          enableAnimation={false}
         />
       )}
       <article className="Home__cardContainer">

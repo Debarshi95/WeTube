@@ -4,7 +4,13 @@
   overflow: hidden;
   position: relative;
 }
-
+.Card__root:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s ease;
+  top: 0;
+  background-color: var(--color-dark);
+  opacity: 0.7;
+}
 .Card__content {
   max-width: 90%;
   margin: 0.5rem auto;
