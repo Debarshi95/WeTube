@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
-  const [loginUser] = useLazyQuery(FETCH_USER_DATA, { fetchPolicy: 'network-only' });
+  const [loginUser, { loading }] = useLazyQuery(FETCH_USER_DATA, { fetchPolicy: 'network-only' });
 
   useEffect(() => {
     const userToken = getLocalStorageData('token') || '';
@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [loginUser, user]);
 
-  const value = useMemo(() => ({ user, error, setUser }), [user, error]);
+  const value = useMemo(() => ({ user, error, setUser, loading }), [user, error, loading]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

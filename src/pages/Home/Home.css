@@ -11,12 +11,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1rem;
+  margin: 4.5rem 0;
 }
 
 .SkeletonCard {
-  height: 17rem;
+  height: 16rem;
   display: block;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 @media screen and (max-width: 600px) {

@@ -1,33 +1,16 @@
 import toast from 'react-hot-toast';
-import { useEffect } from 'react';
-import { useLazyQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { MdDeleteOutline } from 'react-icons/md';
-import { VideoPlayer, Text, PlayerCard, Button } from 'components';
+import { VideoPlayer, Text, PlayerCard, Button, Loader } from 'components';
 import { DELETE_HISTORY, FETCH_ALL_VIEWS } from 'constants/queries/queries';
 import { formatErrorMsg } from 'utils/helperFuncs';
-import { useAuthContext } from 'providers';
+import withProtectedRoute from 'hoc/withProtectedRoute';
 import './History.css';
 
-const History = () => {
-  const { user } = useAuthContext();
-
-  const [fetchViews, { data, refetch }] = useLazyQuery(FETCH_ALL_VIEWS);
+const History = ({ user }) => {
+  const { data, refetch, loading } = useQuery(FETCH_ALL_VIEWS, { fetchPolicy: 'no-cache' });
 
   const [deleteViews] = useMutation(DELETE_HISTORY);
-
-  useEffect(() => {
-    if (user?.id) {
-      fetchViews();
-    }
-  }, [fetchViews, user?.id]);
-
-  if (!user?.id) {
-    return (
-      <section className="h-80 d-flex content-center items-center">
-        <Text size="md">You must be logged in to check watch history</Text>
-      </section>
-    );
-  }
 
   const handleDeleteView = async ({ viewId = null, type = '' }) => {
     try {
@@ -48,6 +31,8 @@ const History = () => {
     }
   };
 
+  if (loading) return <Loader />;
+
   return (
     <div className="History__root">
       {data?.views?.length ? (
@@ -65,10 +50,12 @@ const History = () => {
               refetchVideos={refetch}
               enableWatchLater
               className="History__Card"
-              cardActionProps={{
-                icon: <MdDeleteOutline cursor="pointer" size="1.5rem" />,
-                onClick: (args) => handleDeleteView({ viewId: view.id, ...args }),
-              }}
+              cardActionProps={[
+                {
+                  icon: <MdDeleteOutline cursor="pointer" size="1.5rem" />,
+                  onClick: (args) => handleDeleteView({ viewId: view.id, ...args }),
+                },
+              ]}
             >
               <VideoPlayer url={view.video.url} />
             </PlayerCard>
@@ -83,4 +70,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default withProtectedRoute(History);

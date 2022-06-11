@@ -4,9 +4,11 @@ import { useMutation, useQuery } from '@apollo/client';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import { MdOutlineWatchLater, MdWatchLater } from 'react-icons/md';
+import { FaUserCircle } from 'react-icons/fa';
 import { RiPlayListAddFill } from 'react-icons/ri';
 import { useAuthContext } from 'providers';
-import { Loader, Text, Card, PlayerCard, VideoPlayer, Modal } from 'components';
+import { Loader, Text, Card, PlayerCard, Modal } from 'components';
+import { addedToWatchLater } from 'utils/helperFuncs';
 import {
   FETCH_VIDEO_BY_ID,
   FETCH_VIDEOS,
@@ -14,7 +16,6 @@ import {
   UPDATE_VIEW,
 } from 'constants/queries/queries';
 import './Video.css';
-import { addedToWatchLater } from 'utils/helperFuncs';
 
 const Video = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -110,7 +111,7 @@ const Video = () => {
               },
             ]}
           >
-            <VideoPlayer url={data.video.url} className="Video__playerCard" />
+            <PlayerCard.Video url={data.video.url} className="Video__playerCard" />
           </PlayerCard>
         )}
       </article>
@@ -120,15 +121,21 @@ const Video = () => {
         </Text>
 
         {videoData?.videos?.slice(8, 16).map((video) => (
-          <Card
-            className="Video__watchCard"
-            key={video.id}
-            item={video}
-            imgProps={{
-              width: '100%',
-              height: md ? '16rem' : '14rem',
-            }}
-          />
+          <Card className="Video__watchCard" key={video.id} item={video}>
+            <Card.Image src={video.thumbnail} alt={video.title} height={md ? '16rem' : '14rem'} />
+            <Text className="Text--ellipsis">{video.title}</Text>
+            <div className="d-flex items-center content-between my-1">
+              <Text variant="div" className="d-flex items-center">
+                <FaUserCircle className="Card_icon" />
+                <Text size="xs" className="text-bold">
+                  {video?.user?.username}
+                </Text>
+              </Text>
+              <Text size="xs" align="start">
+                <span className="text-bold px-1">Views {video?.views}</span>
+              </Text>
+            </div>
+          </Card>
         ))}
       </div>
 

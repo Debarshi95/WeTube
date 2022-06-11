@@ -1,4 +1,6 @@
-const Image = ({ src, alt, height, width }) => {
+const Image = ({ src, alt, height, width, children }) => {
+  if (children) return children;
+
   return (
     <div style={{ width, height }}>
       <img
@@ -14,6 +16,7 @@ const Image = ({ src, alt, height, width }) => {
 Image.defaultProps = {
   height: '100%',
   width: '100%',
+  children: null,
 };
 
 export default Image;
