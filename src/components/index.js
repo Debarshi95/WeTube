@@ -11,5 +11,5 @@ export { default as Loader } from './Loader/Loader';
 export { default as VideoPlayer } from './VideoPlayer/VideoPlayer';
 export { default as Input } from './Input/Input';
 export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';
-export { default as PlayerCard } from './PlayerCard/PlayerCard';
+export { default as PlayerCard } from './PlayerCard';
 export { default as Modal } from './Modal/Modal';

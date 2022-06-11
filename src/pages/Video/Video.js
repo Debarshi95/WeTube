@@ -7,7 +7,7 @@ import { MdOutlineWatchLater, MdWatchLater } from 'react-icons/md';
 import { FaUserCircle } from 'react-icons/fa';
 import { RiPlayListAddFill } from 'react-icons/ri';
 import { useAuthContext } from 'providers';
-import { Loader, Text, Card, PlayerCard, VideoPlayer, Modal } from 'components';
+import { Loader, Text, Card, PlayerCard, Modal } from 'components';
 import { addedToWatchLater } from 'utils/helperFuncs';
 import {
   FETCH_VIDEO_BY_ID,
@@ -111,7 +111,7 @@ const Video = () => {
               },
             ]}
           >
-            <VideoPlayer url={data.video.url} className="Video__playerCard" />
+            <PlayerCard.Video url={data.video.url} className="Video__playerCard" />
           </PlayerCard>
         )}
       </article>
